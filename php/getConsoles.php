@@ -12,7 +12,6 @@ try {
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-    // Add some debugging output
     error_log("Found " . count($result) . " consoles in database");
     
     echo json_encode($result);

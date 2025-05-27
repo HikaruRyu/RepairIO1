@@ -9,7 +9,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import CreateConsola from "./pages/private/CreateConsola";
 import EditConsola from "./pages/private/EditConsola";
 import CreateProblema from "./pages/private/CreateProblema";
-import ManageProblemas from "./pages/private/ManageProblemas";
+import EditProblemas from "./pages/private/EditProblemas";
+import User from "./pages/public/User";
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
           <Route path="/createConsola" element={ <ProtectedRoute path="/createConsola"> <CreateConsola /> </ProtectedRoute> } />
           <Route path="/editConsola" element={ <ProtectedRoute path="/editConsola"> <EditConsola /> </ProtectedRoute> } />
           <Route path="/createProblema" element={ <ProtectedRoute path="/createProblema"> <CreateProblema /> </ProtectedRoute> } />
-          <Route path="/editProblema" element={ <ProtectedRoute path="/editProblema"> <ManageProblemas /> </ProtectedRoute> } />
+          <Route path="/editProblema" element={ <ProtectedRoute path="/editProblema"> <EditProblemas /> </ProtectedRoute> } />
+          <Route path="/user" element={<ProtectedRoute path="/user"><User /></ProtectedRoute>} />
         </Routes>
       </Layout>
     </BrowserRouter>

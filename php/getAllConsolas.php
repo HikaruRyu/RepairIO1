@@ -1,4 +1,13 @@
 <?php
+
+include_once("headers.php");
+require_once 'db.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
+    exit;
+}
+
 include_once("headers.php");
 require_once 'db.php';
 

@@ -4,12 +4,6 @@ require_once 'db.php';
 
 session_start();
 
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 1) {
-    http_response_code(403);
-    echo json_encode(['error' => 'No tienes permisos para ver los problemas']);
-    exit;
-}
-
 $sql = "
     SELECT p.*, c.nom as consola_nom
     FROM problema p

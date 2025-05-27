@@ -1,14 +1,17 @@
 <?php
+
+include_once("headers.php");
+require_once 'db.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
+    exit;
+}
+
 include_once("headers.php");
 require_once 'db.php';
 
 session_start();
-
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 1) {
-    http_response_code(403);
-    echo json_encode(['error' => 'No tienes permisos para crear problemas']);
-    exit;
-}
 
 $data = json_decode(file_get_contents('php://input'), true);
 

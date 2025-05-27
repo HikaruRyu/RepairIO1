@@ -171,17 +171,6 @@ function CreateConsola() {
             />
           </div>
 
-          <div>
-            <label className="block text-orange-700 font-semibold mb-1">Imatge</label>
-            <input
-              type="text"
-              name="imatge"
-              value={formData.imatge}
-              onChange={handleChange}
-              className="w-full p-3 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-            />
-          </div>
-
           <div className="flex justify-center">
             <button
               type="submit"

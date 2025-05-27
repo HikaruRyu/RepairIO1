@@ -4,11 +4,7 @@ require_once 'db.php';
 
 session_start();
 
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 1) {
-    http_response_code(403);
-    echo json_encode(['error' => 'No tienes permisos para editar problemas']);
-    exit;
-}
+
 
 $data = json_decode(file_get_contents('php://input'), true);
 
