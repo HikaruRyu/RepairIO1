@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import ProblemaButton from "../../components/ProblemaButton";
 
 function Consola() {
   const { nombre } = useParams();
   const [consola, setConsola] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [problemas, setProblemas] = useState([]);
 
   useEffect(() => {
     const fetchConsola = async () => {
@@ -14,6 +17,12 @@ function Consola() {
         const data = await response.json();
         const foundConsola = data.find(c => c.nom === decodeURIComponent(nombre));
         setConsola(foundConsola);
+
+        if (foundConsola) {
+          const problemsResponse = await fetch(`http://localhost/RepairIo/php/getProblems.php?idConsola=${foundConsola.idConsola}`);
+          const problems = await problemsResponse.json();
+          setProblemas(problems);
+        }
       } catch (error) {
         console.error('Error fetching consola:', error);
       } finally {
@@ -44,8 +53,20 @@ function Consola() {
   }
 
   return (
-    <div className="min-h-screen bg-orange-50 flex items-center justify-center p-10">
-      <div className="bg-white border-2 border-black p-6 shadow-lg w-full max-w-2xl">
+    <div className="min-h-screen bg-orange-50 flex">
+      <div className="w-1/4 bg-white border-r-2 border-black p-4">
+        <h2 className="text-xl font-bold mb-4">Problemas</h2>
+        <div className="space-y-2">
+          {problemas.map((problema) => (
+            <ProblemaButton 
+              key={problema.idProblema} 
+              problema={problema} 
+              nombreConsola={nombre}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="flex-1 p-6 bg-white border-2 border-black shadow-lg">
         <h1 className="text-3xl font-bold text-center mb-4">
           {consola.nom}
         </h1>

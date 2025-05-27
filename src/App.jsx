@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import Register from "./pages/public/Register";
 import Consola from "./pages/public/Consola";
 import Forum from "./pages/public/Forum";
+import Problema from "./pages/public/Problema";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CreateConsola from "./pages/private/CreateConsola";
 import EditConsola from "./pages/private/EditConsola";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/" element={ <Home />} />
           <Route path="/consola/:nombre" element={ <Consola />} />
+          <Route path="/consola/:nombre/problema/:idProblema" element={ <Problema />} />
           <Route path="/forum/:nombre" element={ <ProtectedRoute> <Forum /> </ProtectedRoute> } />
           <Route path="/createConsola" element={ <ProtectedRoute path="/createConsola"> <CreateConsola /> </ProtectedRoute> } />
           <Route path="/editConsola" element={ <ProtectedRoute path="/editConsola"> <EditConsola /> </ProtectedRoute> } />

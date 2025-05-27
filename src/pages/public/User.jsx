@@ -45,7 +45,6 @@ function User() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Get the user ID from the cookie
       const cookie = document.cookie.split(';').find(row => row.trim().startsWith('user='));
       if (!cookie) {
         alert('Error: No se pudo obtener el ID del usuario');
