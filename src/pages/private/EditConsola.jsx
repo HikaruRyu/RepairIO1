@@ -1,4 +1,3 @@
-import { image } from 'framer-motion/client';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -57,7 +56,7 @@ function EditConsola() {
 
   const handleDelete = async () => {
     if (!selectedConsola) {
-      alert('Por favor, seleccione una consola primero');
+      alert('Siusplau, seleccioni una consola primer');
       return;
     }
 
@@ -76,7 +75,7 @@ function EditConsola() {
         const result = await response.json();
 
         if (result.status === 'success') {
-          alert('Consola eliminada exitosamente');
+          //alert('Consola eliminada exitosament');
           const fetchConsolas = async () => {
             try {
               const response = await fetch('http://localhost/RepairIo/php/getAllConsolas.php');
@@ -98,11 +97,11 @@ function EditConsola() {
           };
           fetchConsolas();
         } else {
-          alert(result.message || 'Error al eliminar la consola');
+          alert(result.message || 'Error en eliminar la consola');
         }
       } catch (error) {
         console.error('Error:', error);
-        alert('Error al conectar con el servidor');
+        alert('Error al conectar amb el servidor');
       }
     }
   };
@@ -110,7 +109,7 @@ function EditConsola() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!selectedConsola) {
-      alert('Por favor, seleccione una consola primero');
+      alert('Siusplau, seleccioni una consola primer');
       return;
     }
 
@@ -129,7 +128,7 @@ function EditConsola() {
       const result = await response.json();
 
       if (result.status === 'success') {
-        alert('Consola actualizada exitosamente');
+       // alert('Consola actualizada exitosament');
         const fetchConsolas = async () => {
           try {
             const response = await fetch('http://localhost/RepairIo/php/getAllConsolas.php');
@@ -155,7 +154,7 @@ function EditConsola() {
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Error al conectar con el servidor');
+      alert('Error al conectar-se amb el servidor');
     }
   };
 
@@ -181,7 +180,6 @@ function EditConsola() {
           </select>
         </div>
 
-        {/* Form Section */}
         {selectedConsola && (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>

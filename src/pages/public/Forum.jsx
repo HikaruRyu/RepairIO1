@@ -45,7 +45,7 @@ function Forum() {
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error al cargar el foro");
+      alert("Error trobant foro");
       navigate("/");
     }
   };
@@ -90,13 +90,13 @@ function Forum() {
 
       if (data.status === "success") {
         setNewMessage("");
-        fetchMessages(); 
+        fetchMessages();
       } else {
-        alert("Error al enviar el mensaje: " + data.message);
+        alert("Error al enviar el missatge: " + data.message);
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error al conectar con el servidor");
+      alert("Error al conectar amb el servidor");
     }
   };
 
@@ -132,7 +132,7 @@ function Forum() {
         </form>
 
         <div className="space-y-2">
-          {messages.map((msg) => (
+          {[...messages].reverse().map((msg) => (
             <div
               key={msg.idMissatge}
               className="bg-orange-200 border-2 border-black p-2 shadow-[2px_2px_0_#000]"

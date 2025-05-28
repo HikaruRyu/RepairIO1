@@ -47,7 +47,7 @@ function User() {
     try {
       const cookie = document.cookie.split(';').find(row => row.trim().startsWith('user='));
       if (!cookie) {
-        alert('Error: No se pudo obtener el ID del usuario');
+       alert("Error: No s'ha pogut obtenir l'ID de l'usuari");
         return;
       }
       const cookieValue = cookie.split('=')[1];
@@ -71,7 +71,7 @@ function User() {
       const data = await response.json();
       
       if (data.status === 'success') {
-        alert('Información actualizada exitosamente');
+        //alert('Informació actualizada exitosament');
         setEditing(false);
         document.cookie = `user=${encodeURIComponent(JSON.stringify({
           idUser: userData.idUser,
@@ -80,11 +80,11 @@ function User() {
           rol: formData.rol
         }))}; path=/; max-age=3600`;
       } else {
-        alert('Error al actualizar la información: ' + (data.message || 'Error desconocido'));
+        alert("Error a l'actualizar la informació: " + (data.message || "Error desconegut"));
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Error al conectar con el servidor: ' + error.message);
+      alert("Error al conectar amb el servidor: " + error.message);
     }
   };
 
@@ -93,7 +93,7 @@ function User() {
       <div className="min-h-screen bg-orange-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-orange-500 mx-auto"></div>
-          <p className="mt-4 text-orange-500">Cargando información...</p>
+          <p className="mt-4 text-orange-500">Carregant informació ...</p>
         </div>
       </div>
     );
@@ -102,7 +102,7 @@ function User() {
   if (!user) {
     return (
       <div className="text-center text-red-600 font-bold mt-10">
-        Error: Usuario no encontrado
+        Error: Usuari no trobat
       </div>
     );
   }
@@ -111,13 +111,13 @@ function User() {
     <div className="min-h-screen bg-orange-50 flex items-center justify-center p-10">
       <div className="bg-white border-2 border-black p-6 shadow-lg w-full max-w-2xl">
         <h1 className="text-3xl font-bold text-center mb-8 border-b-4 border-black pb-3 pt-2 bg-orange-400 shadow-[3px_3px_0_#000]">
-          Mi Perfil
+          El Meu Perfil
         </h1>
 
         {editing ? (
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-orange-700 font-semibold mb-1">Nombre</label>
+              <label className="block text-orange-700 font-semibold mb-1">Nom</label>
               <input
                 type="text"
                 name="nom"
@@ -141,7 +141,7 @@ function User() {
             </div>
 
             <div>
-              <label className="block text-orange-700 font-semibold mb-1">Contraseña</label>
+              <label className="block text-orange-700 font-semibold mb-1">Contransenya</label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -171,7 +171,7 @@ function User() {
                 }))}
                 className="w-full p-3 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
               >
-                <option value="0">Usuario Normal</option>
+                <option value="0">Usuari Normal</option>
                 <option value="1">Administrador</option>
               </select>
             </div>
@@ -188,7 +188,7 @@ function User() {
                 type="submit"
                 className="bg-orange-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-orange-600 shadow-[2px_2px_0_#000]"
               >
-                Guardar Cambios
+                Guardar Canvis
               </button>
             </div>
           </form>
@@ -196,7 +196,7 @@ function User() {
           <div className="space-y-6">
             <div className="flex justify-between items-center">
               <div>
-                <p className="text-lg font-semibold">Nombre:</p>
+                <p className="text-lg font-semibold">Nom:</p>
                 <p className="text-gray-700">{user.nom}</p>
               </div>
               <button
@@ -229,7 +229,7 @@ function User() {
             }}
             className="bg-red-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-red-600 shadow-[2px_2px_0_#000]"
           >
-            Cerrar Sesión
+            Tancar Sessió
           </button>
           </div>
         )}

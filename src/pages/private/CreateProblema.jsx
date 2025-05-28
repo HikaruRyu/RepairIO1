@@ -21,11 +21,11 @@ const CreateProblema = () => {
       if (data.status === 'success') {
         setConsolas(data.data);
       } else {
-        console.error('Error fetching consolas:', data.message);
+        console.error('Error fetching consoles:', data.message);
       }
     } catch (error) {
-      console.error('Error fetching consolas:', error);
-      alert('Error al cargar las consolas. Por favor, intenta de nuevo.');
+      console.error('Error fetching consoles:', error);
+      alert('Error en carreguar les consoles.');
     }
   };
 
@@ -41,7 +41,7 @@ const CreateProblema = () => {
     e.preventDefault();
     
     if (!formData.idConsola) {
-      alert('Por favor, selecciona una consola');
+      alert('Siusplau, seleccioni una consola');
       return;
     }
 
@@ -57,15 +57,15 @@ const CreateProblema = () => {
       const data = await response.json();
       
       if (response.ok) {
-        alert('Problema creado exitosamente');
+        //alert('Problema creat exitosament');
         navigate('/editProblema');
       } else {
         console.error('Error creating problema:', data.error);
-        alert('Error al crear el problema. Por favor, intenta de nuevo.');
+        alert('Error en la creació del problema.');
       }
     } catch (error) {
       console.error('Error creating problema:', error);
-      alert('Error al crear el problema. Por favor, intenta de nuevo.');
+      alert('Error en la creació del problema.');
     }
   };
 

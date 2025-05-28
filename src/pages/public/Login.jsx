@@ -31,7 +31,7 @@ const handleSubmit = async (e) => {
     const result = await response.json();
 
     if (result.status === "success") {
-      alert(result.message);
+      //alert(result.message);
       const expires = new Date();
       expires.setHours(expires.getHours() + 1);
       document.cookie = `user=${encodeURIComponent(JSON.stringify(result.user))}; expires=${expires.toUTCString()}; path=/`;
@@ -58,7 +58,7 @@ const handleSubmit = async (e) => {
     }
   } catch (error) {
     console.error("Error en la solicitud:", error);
-    alert("Error al conectar con el servidor.");
+    alert("Error al conectar-se amb el servidor.");
   }
 };
 

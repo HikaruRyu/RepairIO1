@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import ProblemaButton from "../../components/ProblemaButton";
 
 function Consola() {
@@ -55,7 +54,7 @@ function Consola() {
   return (
     <div className="min-h-screen bg-orange-50 flex">
       <div className="w-1/4 bg-white border-r-2 border-black p-4">
-        <h2 className="text-xl font-bold mb-4">Problemas</h2>
+        <h2 className="text-xl font-bold mb-4">Problemes</h2>
         <div className="space-y-2">
           {problemas.map((problema) => (
             <ProblemaButton 
@@ -79,8 +78,7 @@ function Consola() {
           {consola.descripcio}
         </p>
         <p className="mt-4 text-center text-sm text-gray-500">
-          Aquí podrías mostrar un tutorial, pasos de reparación o piezas
-          necesarias.
+          Aquí podríem mostrar un tutorial, passos de reparació o eines necessàries.
         </p>
         <div className="mt-4 text-center text-sm text-gray-500">
           Fabricant: {consola.fabricant}

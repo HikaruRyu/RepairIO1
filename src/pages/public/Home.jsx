@@ -52,7 +52,7 @@ function Home() {
 
         <div className="mb-8 text-center">
           <p className="text-xl font-bold mb-2">
-            Benvingut a la nostra web on aprendras a reparar consoles!
+            Benvingut a la nostra web on aprendràs a reparar consoles!
           </p>
           <p className="text-base">
             Repair.io és una plataforma dedicada a la reparació de consoles de videojocs. Aquí trobaràs una àmplia gamma de consoles, juntament amb informació detallada sobre cada model i les seves característiques. La nostra missió és ajudar-te a aprendre a reparar consoles i a mantenir-les en bon estat per gaudir dels teus videojocs preferits durant més temps.

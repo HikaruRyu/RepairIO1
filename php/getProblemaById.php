@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
     try {
-        $stmt = $conn->prepare("SELECT * FROM problema WHERE idProblema = ?");
+        $stmt = $conn->prepare("SELECT idProblema, titol, descripcio, URLapp, idConsola FROM problema WHERE idProblema = ?");
         $stmt->bind_param("i", $idProblema);
         $stmt->execute();
         $result = $stmt->get_result();

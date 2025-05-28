@@ -30,7 +30,7 @@ function Problema() {
       <div className="min-h-screen bg-orange-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-orange-500 mx-auto"></div>
-          <p className="mt-4 text-orange-500">Cargando problema...</p>
+          <p className="mt-4 text-orange-500">Caregant problema...</p>
         </div>
       </div>
     );
@@ -47,25 +47,25 @@ function Problema() {
   return (
     <div className="min-h-screen bg-orange-50 flex">
       <div className="w-1/4 bg-white border-r-2 border-black p-4">
-        <h2 className="text-xl font-bold mb-4">Problemas</h2>
+        <h2 className="text-xl font-bold mb-4">Problemes</h2>
         <div className="space-y-2">
           <Link 
             to={`/consola/${encodeURIComponent(nombre)}`} 
             className="block p-2 bg-green-400 border-2 border-black text-white hover:bg-green-300"
           >
-            Volver a la consola
+            Tornar a la consola
           </Link>
         </div>
       </div>
       <div className="flex-1 p-6 bg-white border-2 border-black shadow-lg">
-        <h1 className="text-3xl font-bold mb-4">{problema.descripcio}</h1>
+        <h1 className="text-3xl font-bold mb-4">{problema.titol}</h1>
         <div className="mt-4">
-          <h2 className="text-2xl font-bold mb-2">Detalles del Problema</h2>
+          <h2 className="text-2xl font-bold mb-2">Detalls del Problema</h2>
           <p className="text-gray-800 text-lg mb-4">
             {problema.descripcio}
           </p>
           <div className="mt-4">
-            <h3 className="text-xl font-semibold mb-2">URL de Aplicación</h3>
+            <h3 className="text-xl font-semibold mb-2">URL de l'Aplicació</h3>
             <p className="text-gray-800 text-lg">
               <a href={problema.URLapp} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">
                 {problema.URLapp}

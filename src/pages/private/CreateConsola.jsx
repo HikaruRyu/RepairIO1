@@ -38,7 +38,7 @@ function CreateConsola() {
     e.preventDefault();
 
     if (!selectedImage) {
-      alert('Por favor, seleccione una imagen');
+      alert('Siusplau, trii una imatge');
       return;
     }
 
@@ -70,103 +70,103 @@ function CreateConsola() {
         const result = await response.json();
         
         if (result.status === 'success') {
-          alert('Consola creada exitosamente');
+         // alert('Consola creada exitosament');
           navigate('/consola/' + formData.nom);
         } else {
           alert(result.message || 'Error al crear la consola');
         }
       } else {
-        alert(imageResult.message || 'Error al subir la imagen');
+        alert(imageResult.message || 'Error al pujar la imatge');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Error al conectar con el servidor');
+      alert('Error al conectar amb el servidor');
     }
   };
 
   return (
-    <div className="min-h-screen bg-orange-100 flex items-center justify-center px-4 py-8">
-      <div className="bg-white p-10 rounded-2xl shadow-2xl max-w-xl w-full">
-        <h2 className="text-4xl font-bold text-orange-600 text-center mb-8">
+    <div className="min-h-screen bg-orange-50 flex items-center justify-center p-10">
+      <div className="bg-white border-2 border-black p-6 shadow-lg w-full max-w-2xl">
+        <h1 className="text-3xl font-bold text-center mb-8 border-b-4 border-black pb-3 pt-2 bg-orange-400 shadow-[3px_3px_0_#000]">
           Crear Consola
-        </h2>
+        </h1>
 
         <form onSubmit={handleSubmit} className="space-y-5" enctype="multipart/form-data">
           <div>
-            <label className="block text-orange-700 font-semibold mb-1">Nombre</label>
+            <label className="block text-lg font-semibold mb-2">Nom</label>
             <input
               type="text"
               name="nom"
               value={formData.nom}
               onChange={handleChange}
-              className="w-full p-3 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+              className="w-full p-3 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50 shadow-[3px_3px_0_#000]"
               required
             />
           </div>
 
           <div>
-            <label className="block text-orange-700 font-semibold mb-1">Fabricante</label>
+            <label className="block text-lg font-semibold mb-2">Fabricant</label>
             <input
               type="text"
               name="fabricant"
               value={formData.fabricant}
               onChange={handleChange}
-              className="w-full p-3 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+              className="w-full p-3 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50 shadow-[3px_3px_0_#000]"
               required
             />
           </div>
 
           <div>
-            <label className="block text-orange-700 font-semibold mb-1">Descripción</label>
+            <label className="block text-lg font-semibold mb-2">Descripció</label>
             <textarea
               name="descripcio"
               value={formData.descripcio}
               onChange={handleChange}
-              className="w-full p-3 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 h-24"
+              className="w-full p-3 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50 shadow-[3px_3px_0_#000]"
               required
+              rows="4"
             />
           </div>
 
           <div>
-            <label className="block text-orange-700 font-semibold mb-1">Información de Mantenimiento</label>
+            <label className="block text-lg font-semibold mb-2">Informació de Mantenimient</label>
             <textarea
               name="infoManteniment"
               value={formData.infoManteniment}
               onChange={handleChange}
-              className="w-full p-3 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 h-24"
+              className="w-full p-3 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50 shadow-[3px_3px_0_#000]"
               required
+              rows="4"
             />
           </div>
 
           <div>
-            <label className="block text-orange-700 font-semibold mb-1">Imagen</label>
-            <div className="flex flex-col gap-2">
+            <label className="block text-lg font-semibold mb-2">Imatge</label>
+            <div className="flex flex-col space-y-2">
               {imagePath && (
                 <img 
-                  src={`http://localhost/RepairIo/public/uploads/consolas/${imagePath}`} 
-                  alt="Preview" 
+                  src={imagePath} 
+                  alt="Vista previa" 
                   className="w-32 h-32 object-cover rounded-lg"
                 />
               )}
               <input
                 type="file"
-                name="image"
                 accept="image/*"
                 onChange={handleImageChange}
-                className="w-full p-3 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-                required
+                className="w-full p-3 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50 shadow-[3px_3px_0_#000]"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-orange-700 font-semibold mb-1">URL de la App</label>
+            <label className="block text-lg font-semibold mb-2">URL de la App</label>
             <input
-              type="url"
+              type="text"
               name="URLapp"
               value={formData.URLapp}
               onChange={handleChange}
-              className="w-full p-3 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+              className="w-full p-3 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50 shadow-[3px_3px_0_#000]"
               required
             />
           </div>

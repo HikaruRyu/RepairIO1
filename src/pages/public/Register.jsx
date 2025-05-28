@@ -41,7 +41,7 @@ const handleSubmit = async (e) => {
     const result = await response.json();
 
     if (result.status === "success") {
-      alert(result.message);
+      //alert(result.message);
       navigate("/login");
     } else {
       alert(result.message || "Error en el registre.");
