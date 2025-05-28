@@ -41,8 +41,30 @@ const handleSubmit = async (e) => {
     const result = await response.json();
 
     if (result.status === "success") {
-      //alert(result.message);
-      navigate("/login");
+      // Enviar correo de bienvenida
+      fetch("http://localhost/RepairIo/php/sendMail.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          username: formData.username
+        })
+      })
+      .then(response => response.json())
+      .then(mailResult => {
+        if (mailResult.status === "success") {
+          navigate("/login");
+        } else {
+          console.error("Error al enviar el correo:", mailResult.message);
+          navigate("/login");
+        }
+      })
+      .catch(error => {
+        console.error("Error al enviar el correo:", error);
+        navigate("/login");
+      });
     } else {
       alert(result.message || "Error en el registre.");
     }

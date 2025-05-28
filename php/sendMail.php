@@ -1,10 +1,11 @@
 <?php
 
+include_once("db.php");
+include_once("headers.php");
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-include_once("db.php");
-include_once("headers.php");
 
 require 'phpmailer/PHPMailer.php';
 require 'phpmailer/Exception.php';
@@ -56,11 +57,10 @@ try {
 
     $mail->isHTML(true);
     $mail->Subject = 'Gràcies per confiar en nosaltres!';
-    $mail->addEmbeddedImage('../html/logo-undiapersempre.png', 'logoimg');
     $mail->Body = file_get_contents('../html/email.html');
 
-    $pdfPath = '../html/entrada.pdf';
-    $mail->addAttachment($pdfPath, 'Entrades.pdf');
+    $pdfPath = '../html/entrada.png';
+    $mail->addAttachment($pdfPath, 'entrada.png');
 
     $mail->send();
     echo json_encode(["status" => "success"]);
