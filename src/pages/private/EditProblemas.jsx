@@ -29,9 +29,7 @@ const ManageProblemas = () => {
   };
 
   const handleDelete = async (id) => {
-    if (
-      window.confirm("¿Estàs segur que vols eliminar aquest problema?")
-    ) {
+    if (window.confirm("¿Estàs segur que vols eliminar aquest problema?")) {
       try {
         const response = await fetch(
           `http://localhost/RepairIo/php/deleteProblema.php?id=${id}`,
@@ -80,14 +78,18 @@ const ManageProblemas = () => {
       }
     } catch (error) {
       console.error("Error updating problema:", error);
-      alert("Error al connectar amb el servidor. Si us plau, intenta-ho de nou.");
+      alert(
+        "Error al connectar amb el servidor. Si us plau, intenta-ho de nou."
+      );
     }
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container ml-16 mt-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2>Gestió de Problemes</h2>
+        <h2 className="text-3xl font-bold text-center mb-8 border-b-4 border-black pb-3 pt-2 bg-orange-400 shadow-[3px_3px_0_#000]">
+          Gestió de Problemes
+        </h2>
         <div className="flex justify-end mb-4">
           <button
             className="bg-orange-500 text-white font-semibold px-3 py-1 rounded-lg hover:bg-orange-600 shadow-[2px_2px_0_#000]"

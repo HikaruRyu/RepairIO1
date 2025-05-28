@@ -6,13 +6,10 @@ function Layout({ children }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Get user data from cookie
     const cookie = document.cookie.split(';').find(row => row.trim().startsWith('user='));
     
-    // Get current path
     const currentPath = location.pathname;
     
-    // Check if current path is public (home, register, consola, or forum)
     if (currentPath === '/' || 
         currentPath === '/register' || 
         currentPath.startsWith('/consola/') || 

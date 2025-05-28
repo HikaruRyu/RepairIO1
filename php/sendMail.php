@@ -15,7 +15,8 @@ function loadEnv($file)
 {
     $lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
-        if (strpos(trim($line), '#') === 0) continue;
+        if (strpos(trim($line), '#') === 0)
+            continue;
         list($key, $value) = explode('=', $line, 2);
         $_ENV[trim($key)] = trim(trim($value, '"'));
     }
@@ -50,7 +51,18 @@ try {
     $mail->Username = $_ENV['MAIL_USERNAME'];
     $mail->Password = $_ENV['MAIL_PASSWORD'];
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = $_ENV['MAIL_PORT'];
+    $mail->Port = (int)$_ENV['MAIL_PORT'];
+    $mail->SMTPOptions = [
+        'ssl' => [
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        ]
+    ];
+    $mail->SMTPDebug = 2;
+    $mail->Debugoutput = 'error_log';
+
+
 
     $mail->setFrom($_ENV['MAIL_FROM_ADDRESS'], $_ENV['MAIL_FROM_NAME']);
     $mail->addAddress($email);
