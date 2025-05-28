@@ -11,6 +11,7 @@ function CreateConsola() {
   });
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePath, setImagePath] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -24,14 +25,26 @@ function CreateConsola() {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    setSelectedImage(file);
     if (file) {
+      setIsUploading(true);
       const reader = new FileReader();
       reader.onload = (event) => {
         setImagePath(event.target.result);
+        setIsUploading(false);
+      };
+      reader.onerror = () => {
+        setIsUploading(false);
+        alert('Error al cargar la imagen');
       };
       reader.readAsDataURL(file);
+      setSelectedImage(file);
     }
+  };
+
+  const handleRemoveImage = () => {
+    setSelectedImage(null);
+    setImagePath('');
+    e.target.value = '';
   };
 
   const handleSubmit = async (e) => {
@@ -129,7 +142,7 @@ function CreateConsola() {
           </div>
 
           <div>
-            <label className="block text-lg font-semibold mb-2">Informació de Mantenimient</label>
+            <label className="block text-lg font-semibold mb-2">Informació de Manteniment</label>
             <textarea
               name="infoManteniment"
               value={formData.infoManteniment}
@@ -143,12 +156,28 @@ function CreateConsola() {
           <div>
             <label className="block text-lg font-semibold mb-2">Imatge</label>
             <div className="flex flex-col space-y-2">
-              {imagePath && (
-                <img 
-                  src={imagePath} 
-                  alt="Vista previa" 
-                  className="w-32 h-32 object-cover rounded-lg"
-                />
+              {imagePath ? (
+                <div className="relative">
+                  <img 
+                    src={imagePath} 
+                    alt="Vista previa" 
+                    className="w-48 h-48 object-cover rounded-lg border-2 border-orange-300"
+                  />
+                  <button
+                    onClick={handleRemoveImage}
+                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600 transition duration-200"
+                  >
+                    ×
+                  </button>
+                </div>
+              ) : (
+                <div className="w-48 h-48 border-2 border-orange-300 rounded-lg flex items-center justify-center">
+                  {isUploading ? (
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
+                  ) : (
+                    <p className="text-gray-500">Selecciona una imagen</p>
+                  )}
+                </div>
               )}
               <input
                 type="file"

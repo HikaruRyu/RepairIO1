@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const CreateProblema = () => {
   const [consolas, setConsolas] = useState([]);
   const [formData, setFormData] = useState({
+    titol: '',
     descripcio: '',
     URLapp: '',
     idConsola: ''
@@ -25,7 +26,7 @@ const CreateProblema = () => {
       }
     } catch (error) {
       console.error('Error fetching consoles:', error);
-      alert('Error en carreguar les consoles.');
+      alert('Error en carregar les consoles.');
     }
   };
 
@@ -57,7 +58,6 @@ const CreateProblema = () => {
       const data = await response.json();
       
       if (response.ok) {
-        //alert('Problema creat exitosament');
         navigate('/editProblema');
       } else {
         console.error('Error creating problema:', data.error);
@@ -73,11 +73,22 @@ const CreateProblema = () => {
     <div className="min-h-screen bg-orange-50 flex items-center justify-center p-10">
       <div className="bg-white border-2 border-black p-6 shadow-lg w-full max-w-2xl">
         <h1 className="text-3xl font-bold text-center mb-8 border-b-4 border-black pb-3 pt-2 bg-orange-400 shadow-[3px_3px_0_#000]">
-          Crear Nuevo Problema
+          Crear Nou Problema
         </h1>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-lg font-semibold mb-2">Descripción</label>
+            <label className="block text-lg font-semibold mb-2">Títol</label>
+            <input
+              type="text"
+              className="w-full p-3 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50 shadow-[2px_3px_0_#000]"
+              name="titol"
+              value={formData.titol}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-semibold mb-2">Descripció</label>
             <textarea
               className="w-full p-3 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50 shadow-[2px_2px_0_#000]"
               name="descripcio"
@@ -89,10 +100,10 @@ const CreateProblema = () => {
           </div>
 
           <div>
-            <label className="block text-lg font-semibold mb-2">URL de la Aplicación</label>
+            <label className="block text-lg font-semibold mb-2">URL de l'Aplicació</label>
             <input
               type="text"
-              className="w-full p-3 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50 shadow-[3px_3px_0_#000]"
+              className="w-full p-3 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50 shadow-[2px_3px_0_#000]"
               name="URLapp"
               value={formData.URLapp}
               onChange={handleChange}
@@ -103,7 +114,7 @@ const CreateProblema = () => {
           <div>
             <label className="block text-lg font-semibold mb-2">Consola</label>
             <select
-              className="w-full p-3 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50 shadow-[3px_3px_0_#000]"
+              className="w-full p-3 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50 shadow-[2px_3px_0_#000]"
               name="idConsola"
               value={formData.idConsola}
               onChange={handleChange}
@@ -121,7 +132,7 @@ const CreateProblema = () => {
           <div className="flex justify-end space-x-4">
             <button
               type="submit"
-              className="bg-orange-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-orange-600 shadow-[2px_2px_0_#000]"
+              className="bg-orange-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-orange-600 shadow-[2px_3px_0_#000]"
             >
               Crear Problema
             </button>

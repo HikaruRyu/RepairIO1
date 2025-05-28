@@ -12,6 +12,9 @@ function EditConsola() {
     URLapp: '',
     imatge: ''
   });
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imagePath, setImagePath] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,13 +57,42 @@ function EditConsola() {
     }));
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setIsUploading(true);
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setImagePath(event.target.result);
+        setIsUploading(false);
+      };
+      reader.onerror = () => {
+        setIsUploading(false);
+        alert('Error al cargar la imagen');
+      };
+      reader.readAsDataURL(file);
+      setSelectedImage(file);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setSelectedImage(null);
+    setImagePath('');
+  };
+
+  useEffect(() => {
+    if (selectedConsola && formData.imatge) {
+      setImagePath(`http://localhost/RepairIo/public/uploads/consolas/${formData.imatge}`);
+    }
+  }, [selectedConsola, formData.imatge]);
+
   const handleDelete = async () => {
     if (!selectedConsola) {
       alert('Siusplau, seleccioni una consola primer');
       return;
     }
 
-    if (window.confirm('¿Estás seguro de que quieres eliminar esta consola?')) {
+    if (window.confirm('¿Estàs segur que vols eliminar aquesta consola?')) {
       try {
         const response = await fetch('http://localhost/RepairIo/php/deleteConsola.php', {
           method: 'POST',
@@ -101,7 +133,7 @@ function EditConsola() {
         }
       } catch (error) {
         console.error('Error:', error);
-        alert('Error al conectar amb el servidor');
+        alert('Error al connectar-se amb el servidor');
       }
     }
   };
@@ -150,11 +182,11 @@ function EditConsola() {
         };
         fetchConsolas();
       } else {
-        alert(result.message || 'Error al actualizar la consola');
+        alert(result.message || 'Error al actualitzar la consola');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Error al conectar-se amb el servidor');
+      alert('Error al connectar-se amb el servidor');
     }
   };
 
@@ -184,7 +216,7 @@ function EditConsola() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Nombre
+                Nom
               </label>
               <input
                 type="text"
@@ -198,7 +230,7 @@ function EditConsola() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Fabricante
+                Fabricant
               </label>
               <input
                 type="text"
@@ -212,7 +244,7 @@ function EditConsola() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Descripción
+                Descripció
               </label>
               <textarea
                 name="descripcio"
@@ -225,7 +257,7 @@ function EditConsola() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Información de Mantenimiento
+                Informació de Manteniment
               </label>
               <textarea
                 name="infoManteniment"
@@ -238,7 +270,44 @@ function EditConsola() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                URL de la App
+                Imatge
+              </label>
+              <div className="flex flex-col space-y-2">
+                {imagePath ? (
+                  <div className="relative">
+                    <img 
+                      src={imagePath} 
+                      alt="Vista previa" 
+                      className="w-48 h-48 object-cover rounded-lg border-2 border-orange-300"
+                    />
+                    <button
+                      onClick={handleRemoveImage}
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600 transition duration-200"
+                    >
+                      ×
+                    </button>
+                  </div>
+                ) : (
+                  <div className="w-48 h-48 border-2 border-orange-300 rounded-lg flex items-center justify-center">
+                    {isUploading ? (
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
+                    ) : (
+                      <p className="text-gray-500">Selecciona una imagen</p>
+                    )}
+                  </div>
+                )}
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="w-full p-3 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                URL de l'App
               </label>
               <input
                 type="text"
