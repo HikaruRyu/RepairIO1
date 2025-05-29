@@ -1,0 +1,22 @@
+[
+  {
+    "nombre": "Nintendo DS",
+    "descripcion": "Una consola híbrida. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales molestie molestie.",
+    "imagen": "/dsLite1.png"
+  },
+  {
+    "nombre": "PlayStation 5",
+    "descripcion": "Una consola moderna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales molestie molestie.",
+    "imagen": "/dsLite1.png"
+  },
+  {
+    "nombre": "Xbox Series X",
+    "descripcion": "Una consola potente. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales molestie molestie.",
+    "imagen": "/dsLite1.png"
+  },
+  {
+    "nombre": "Nintendo Switch",
+    "descripcion": "Una consola clásica. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales molestie molestie.",
+    "imagen": "/dsLite1.png"
+  }
+]
