@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link   href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet">
+    <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
+    <script src="https://unpkg.com/@videojs/http-streaming@3.2.0/dist/videojs-http-streaming.min.js"></script>
+</head>
+<body>
+    <video
+    id="my_video_1"
+    class="video-js vjs-default-skin"
+    
+    width="640"
+    height="268"
+    controls>
+</video>
+    <script>
+    const video = document.querySelector('#my_video_1')
+    const src   = video.getAttribute('src')
+    const type  = video.getAttribute('type')
+
+    const player = videojs(video)
+    player.src({
+      //src: src,
+        src:"http://localhost:8088/dash/stream.mpd",
+        type: "application/dash+xml"
+    })
+    //type="application/dash+xml"
+    //src="http://localhost:8088/dash/stream.mpd"
+    //Auth    
+</script>
+
+    
+  
+</body>
+</html>

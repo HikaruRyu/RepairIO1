@@ -1,0 +1,12 @@
+Tools:
+    - Multimeter/ Solder
+        - Popup with new img, select ground and conection
+            Then, if continuity = 0, interact with solder
+    - Qtip
+        - No popup, "on.mouseover" over trash (100%)
+Wires:
+    - As regular layers
+Steps:
+    - Scene change (100%)
+    - Specific Steps (100%)
+Refactor: 0%;
