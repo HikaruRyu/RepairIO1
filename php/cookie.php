@@ -18,6 +18,7 @@ function isUserAuthenticated() {
     }
 
     include_once("db.php");
+    
     $sql = "SELECT idUser FROM usuari WHERE email = ? AND idUser = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("si", $user['email'], $user['idUser']);
