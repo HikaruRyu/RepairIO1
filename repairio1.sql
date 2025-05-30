@@ -112,6 +112,9 @@ CREATE TABLE `problema` (
 INSERT INTO `problema` (`idProblema`, `titol`, `descripcio`, `URLapp`, `idConsola`) VALUES
 (11, 'Problemes Llum', 'La llum', 'http://localhost:5173', 7);
 
+INSERT INTO `problema` (`idProblema`, `titol`, `descripcio`, `URLapp`, `idConsola`) VALUES
+(1, 'Problemes Btns', 'Btns', 'ds_btns_ds', 1);
+
 -- --------------------------------------------------------
 
 --

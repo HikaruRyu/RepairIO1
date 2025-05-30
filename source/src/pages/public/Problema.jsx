@@ -65,13 +65,17 @@ function Problema() {
             {problema.descripcio}
           </p>
           <div className="mt-4">
-            <h3 className="text-xl font-semibold mb-2">URL de l'Aplicació</h3>
+            {/* <h3 className="text-xl font-semibold mb-2">URL de l'Aplicació</h3>
             <p className="text-gray-800 text-lg">
               <a href={problema.URLapp} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">
                 {problema.URLapp}
               </a>
-            </p>
-            <iframe src={'http://localhost:8082/'+problema.URLapp}></iframe>
+            </p> */}
+            <iframe className='iframe-container' style={{
+            width: "100%",
+    minHeight: "700px"
+  }}
+     src={'http://localhost:8082/'+problema.URLapp}></iframe>
           </div>
         </div>
       </div>

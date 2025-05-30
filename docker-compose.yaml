@@ -69,7 +69,7 @@ services:
     networks:
       - app-tier
     ports:
-      - "8080:80"
+      - "8083:80"
 networks:
   app-tier:
     driver: bridge
