@@ -86,7 +86,7 @@ function Consola() {
         <div className="mt-4 text-center text-sm text-gray-500">
           Informació de manteniment: {consola.infoManteniment}
         </div>
-        <div className="mt-4 text-center">
+        <div className="mt-4 mb-4 text-center">
           <Link
             to={`/forum/${encodeURIComponent(nombre)}`}
             className="bg-green-400 border-2 border-black px-3 py-1 ml-2 font-bold shadow-[2px_2px_0_#000] hover:bg-green-300"
