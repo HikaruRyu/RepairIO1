@@ -94,6 +94,11 @@ function Consola() {
             FÒRUM
           </Link>
         </div>
+        <iframe className='iframe-container' style={{
+            width: "100%",
+    minHeight: "700px"
+  }}
+     src={'http://localhost:8082/index'}></iframe>
       </div>
     </div>
   );

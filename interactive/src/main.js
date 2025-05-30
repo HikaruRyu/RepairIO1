@@ -1,5 +1,5 @@
 import { Application, Assets, SCALE_MODES, Sprite } from 'pixi.js';
-import { scene_ds, nds, nds_board, getLayer, getAbsoluteLocalParent, atachedToAnything, getParents } from './hardware.js';
+import { ds_btns_ds, nds, nds_board, getLayer, getAbsoluteLocalParent, atachedToAnything, getParents } from './hardware.js';
 import { tools } from "./tools.js";
 
 (async () => {
@@ -24,7 +24,8 @@ import { tools } from "./tools.js";
     document.body.appendChild(app.canvas);
 
     //Instanciate hardware and tools
-    var hardware = scene_ds.hardware[scene_ds.current];
+    var hardware = ds_btns_ds.hardware[ds_btns_ds.current];
+    ds_btns_ds.current = 1
     const dirt_t = await Assets.load('/assets/DS/dirt.png');
     const dirt_p = []
     instanciate_hardware(hardware);
@@ -39,21 +40,22 @@ import { tools } from "./tools.js";
     button_spr.x += 550;
     button_spr.eventMode = 'static';
     button_spr.on('pointerdown', scene_change);
+    button_spr.visible = false;
     //button_spr.texture = ht
 
     function scene_change() {
-        console.log(scene_ds.conditions[scene_ds.current]())
+        console.log(ds_btns_ds.conditions[ds_btns_ds.current]())
         console.log(getLayer(1,hardware))
         
-        if (scene_ds.conditions[scene_ds.current]()) {
-            scene_ds.current += 1;
+        if (ds_btns_ds.conditions[ds_btns_ds.current]()) {
+            ds_btns_ds.current += 1;
             //app.stage.removeChildren()
             hardware.layers.forEach(element => {
                 element.sprite.destroy()
             });
             dragTarget = null;
             dragLayer = null;
-            hardware = scene_ds.hardware[scene_ds.current];
+            hardware = ds_btns_ds.hardware[ds_btns_ds.current];
             instanciate_hardware(hardware);
         }
     }
@@ -61,7 +63,7 @@ import { tools } from "./tools.js";
 
     //Executes each tick, delta stores deltatime (time between frames)
     app.ticker.add((delta) => {
-        if (scene_ds.current == scene_ds.conditions.length -1 || !scene_ds.conditions[scene_ds.current]()) {
+        if (ds_btns_ds.current == ds_btns_ds.conditions.length -1 || !ds_btns_ds.conditions[ds_btns_ds.current]()) {
             button_spr.texture = btnoff_t
         } else {
             button_spr.texture = btnon_t
