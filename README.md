@@ -11,4 +11,8 @@ To deploy this project localy clone this repository, open a terminal inside the 
 ```bash
   make start-composer
 ```
-
+If you don't have "make" installed, run
+```bash
+  docker compose build --no-cache
+	docker compose up -d
+```
