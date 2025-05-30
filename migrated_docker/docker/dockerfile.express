@@ -1,0 +1,9 @@
+FROM node:23-alpine
+
+
+WORKDIR /usr/app
+COPY ./config/express/* /usr/app/
+RUN npm install
+
+# Default command
+CMD ["npm", "start"]

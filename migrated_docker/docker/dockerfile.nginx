@@ -1,0 +1,12 @@
+FROM nginx:latest
+
+RUN apt update
+RUN apt install -y nginx-common
+RUN apt install -y libnginx-mod-rtmp
+RUN apt install -y gzip
+
+RUN service nginx-debug reload 
+RUN mkdir /var/www/html/rtmp
+RUN ln -s /etc/nginx/sites-available/rtmp /etc/nginx/sites-enabled/rtmp
+RUN mkdir /var/www/html/stream
+RUN service nginx-debug reload
