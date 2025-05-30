@@ -1,4 +1,4 @@
-import { Application, Assets, SCALE_MODES, Sprite } from 'pixi.js';
+import { Application, Assets, SCALE_MODES, Sprite,TextStyle  } from 'pixi.js';
 import { ds_btns_ds, nds, nds_board,top_1, getLayer, getAbsoluteLocalParent, atachedToAnything, getParents } from './hardware.js';
 import { tools } from "./tools.js";
 
@@ -44,7 +44,9 @@ import { tools } from "./tools.js";
     function scene_change() {
         console.log(ds_btns_ds.conditions[ds_btns_ds.current])
         console.log(getLayer(2,hardware))
-        
+        if (ds_btns_ds.current + 1 == ds_btns_ds.hardware.length) {
+            window.location.reload();
+        }
         if (ds_btns_ds.conditions[ds_btns_ds.current]()) {
             ds_btns_ds.current += 1;
             //app.stage.removeChildren()
@@ -55,6 +57,8 @@ import { tools } from "./tools.js";
             dragLayer = null;
             hardware = ds_btns_ds.hardware[ds_btns_ds.current];
             instanciate_hardware(hardware);
+            app.stage.addChild(ds_btns_ds.texts[ds_btns_ds.current -1]).destroy();
+
         }
     }
 
@@ -114,12 +118,12 @@ import { tools } from "./tools.js";
     function instanciate_tools(tools) {
         let x = 18;
         app.stage.addChild(tools.table.sprite)
-        tools.table.sprite.scale.set(1.8)
+        tools.table.sprite.scale.set(1.6)
         for (const [key, value] of Object.entries(tools)) {
             if (value.id != null) {
-                value.sprite.scale.set(0.15);
+                value.sprite.scale.set(0.14);
                 value.sprite.x = x;
-                value.sprite.y = 25;
+                value.sprite.y = 20;
                 x += 50;
                 if (value.id == 4) {
                     x += 70;
@@ -187,6 +191,24 @@ import { tools } from "./tools.js";
                 count += 1;
             }
         });
+        var style = new TextStyle({
+            fontFamily: 'Arial',
+            fontSize: 30,
+            fontWeight: 'bold',
+            fill: '#ffffff',
+            stroke: { color: '#000000', width: 5, join: 'round' },
+            dropShadow: {
+                color: '#000000',
+                blur: 4,
+                angle: Math.PI / 6,
+                distance: 6,
+            },
+            wordWrap: true,
+            wordWrapWidth: 300,
+        });
+        ds_btns_ds.texts[ds_btns_ds.current].x = 800;
+        ds_btns_ds.texts[ds_btns_ds.current].style = style;
+        app.stage.addChild(ds_btns_ds.texts[ds_btns_ds.current]);
 
     }
 

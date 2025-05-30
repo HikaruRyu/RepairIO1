@@ -1,4 +1,4 @@
-import { Application, Assets, SCALE_MODES, Sprite, RenderTexture, Graphics, Rectangle } from 'pixi.js';
+import { Application, Assets, SCALE_MODES, Sprite, RenderTexture, Graphics, Rectangle, TextStyle } from 'pixi.js';
 import { ds_slots_ds, nds, nds_board, top_1, getLayer, getAbsoluteLocalParent, atachedToAnything, getParents } from './hardware.js';
 import { tools } from "./tools.js";
 
@@ -17,7 +17,6 @@ import { tools } from "./tools.js";
     app.stage.hitArea = app.screen;
     app.stage.on('pointerup', onDragEnd);
     app.stage.on('pointerupoutside', onDragEnd);
-    document.addEventListener('keydown', onKeyDown);
 
     // Append the application canvas to the document body
     document.body.appendChild(app.canvas);
@@ -27,7 +26,7 @@ import { tools } from "./tools.js";
 
     const dirt_t = await Assets.load('/assets/DS/dirt.png');
     const dirt_p = []
-    
+
     instanciate_hardware(hardware);
     instanciate_tools(tools);
 
@@ -45,7 +44,9 @@ import { tools } from "./tools.js";
     function scene_change() {
         //console.log(ds_slots_ds.conditions[ds_slots_ds.current])
         //console.log(getLayer(2,hardware))
-
+        if (ds_slots_ds.current + 1 == ds_slots_ds.hardware.length) {
+            window.location.reload();
+        }
         if (ds_slots_ds.conditions[ds_slots_ds.current]()) {
             ds_slots_ds.current += 1;
             //app.stage.removeChildren()
@@ -56,6 +57,8 @@ import { tools } from "./tools.js";
             dragLayer = null;
             hardware = ds_slots_ds.hardware[ds_slots_ds.current];
             instanciate_hardware(hardware);
+            app.stage.addChild(ds_slots_ds.texts[ds_slots_ds.current - 1]).destroy();
+
         }
     }
 
@@ -115,12 +118,12 @@ import { tools } from "./tools.js";
     function instanciate_tools(tools) {
         let x = 18;
         app.stage.addChild(tools.table.sprite)
-        tools.table.sprite.scale.set(1.8)
+        tools.table.sprite.scale.set(1.6)
         for (const [key, value] of Object.entries(tools)) {
             if (value.id != null) {
-                value.sprite.scale.set(0.15);
+                value.sprite.scale.set(0.14);
                 value.sprite.x = x;
-                value.sprite.y = 25;
+                value.sprite.y = 20;
                 x += 50;
                 if (value.id == 4) {
                     x += 70;
@@ -190,7 +193,24 @@ import { tools } from "./tools.js";
                 count += 1;
             }
         });
-
+        var style = new TextStyle({
+            fontFamily: 'Arial',
+            fontSize: 30,
+            fontWeight: 'bold',
+            fill: '#ffffff',
+            stroke: { color: '#000000', width: 5, join: 'round' },
+            dropShadow: {
+                color: '#000000',
+                blur: 4,
+                angle: Math.PI / 6,
+                distance: 6,
+            },
+            wordWrap: true,
+            wordWrapWidth: 300,
+        });
+        ds_slots_ds.texts[ds_slots_ds.current].x = 800;
+        ds_slots_ds.texts[ds_slots_ds.current].style = style;
+        app.stage.addChild(ds_slots_ds.texts[ds_slots_ds.current]);
     }
 
     function cleanDirt() {
@@ -378,7 +398,7 @@ import { tools } from "./tools.js";
                 element.sprite.visible = false;
             });
         }
-        
+
         app.stage.addChild(minigame_info.sprite);
         minigame_info.sprite.eventMode = "static";
         minigame_info.sprite.x = app.stage.width / 1.3
@@ -490,7 +510,7 @@ import { tools } from "./tools.js";
                 element.sprite.visible = false;
             });
         }
-        
+
         app.stage.addChild(minigame_info.sprite);
         minigame_info.sprite.eventMode = "static";
         minigame_info.sprite.x = app.stage.width / 1.3

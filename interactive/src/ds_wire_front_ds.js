@@ -1,5 +1,5 @@
-import { Application, Assets, SCALE_MODES, Sprite } from 'pixi.js';
-import { nds_bottom_btns, board_wire_front_scene, nds_board,top_1, getLayer, getAbsoluteLocalParent, atachedToAnything, getParents } from './hardware.js';
+import { Application, Assets, SCALE_MODES, Sprite, TextStyle } from 'pixi.js';
+import { nds_bottom_btns, board_wire_front_scene, nds_board, top_1, getLayer, getAbsoluteLocalParent, atachedToAnything, getParents } from './hardware.js';
 import { tools } from "./tools.js";
 
 (async () => {
@@ -43,8 +43,10 @@ import { tools } from "./tools.js";
 
     function scene_change() {
         console.log(board_wire_front_scene.conditions[board_wire_front_scene.current])
-        console.log(getLayer(2,hardware))
-        
+        console.log(getLayer(2, hardware))
+        if (board_wire_front_scene.current + 1 == board_wire_front_scene.hardware.length) {
+            window.location.reload();
+        }
         if (board_wire_front_scene.conditions[board_wire_front_scene.current]()) {
             board_wire_front_scene.current += 1;
             //app.stage.removeChildren()
@@ -55,6 +57,8 @@ import { tools } from "./tools.js";
             dragLayer = null;
             hardware = board_wire_front_scene.hardware[board_wire_front_scene.current];
             instanciate_hardware(hardware);
+            app.stage.addChild(board_wire_front_scene.texts[board_wire_front_scene.current - 1]).destroy();
+
         }
     }
 
@@ -63,7 +67,7 @@ import { tools } from "./tools.js";
     app.ticker.add((delta) => {
         if (board_wire_front_scene.current == board_wire_front_scene.conditions.length || !board_wire_front_scene.conditions[board_wire_front_scene.current]()) {
             button_spr.texture = btnoff_t
-        } else if(board_wire_front_scene.conditions[board_wire_front_scene.current]()) {
+        } else if (board_wire_front_scene.conditions[board_wire_front_scene.current]()) {
             button_spr.texture = btnon_t
 
         }
@@ -114,10 +118,10 @@ import { tools } from "./tools.js";
     function instanciate_tools(tools) {
         let x = 18;
         app.stage.addChild(tools.table.sprite)
-        tools.table.sprite.scale.set(1.8)
+        tools.table.sprite.scale.set(1.6)
         for (const [key, value] of Object.entries(tools)) {
             if (value.id != null) {
-                value.sprite.scale.set(0.15);
+                value.sprite.scale.set(0.14);
                 value.sprite.x = x;
                 value.sprite.y = 25;
                 x += 50;
@@ -188,7 +192,24 @@ import { tools } from "./tools.js";
             }
         });
         hardware.layers[2].sprite.x += 250;
-
+        var style = new TextStyle({
+            fontFamily: 'Arial',
+            fontSize: 30,
+            fontWeight: 'bold',
+            fill: '#ffffff',
+            stroke: { color: '#000000', width: 5, join: 'round' },
+            dropShadow: {
+                color: '#000000',
+                blur: 4,
+                angle: Math.PI / 6,
+                distance: 6,
+            },
+            wordWrap: true,
+            wordWrapWidth: 300,
+        });
+        board_wire_front_scene.texts[board_wire_front_scene.current].x = 800;
+        board_wire_front_scene.texts[board_wire_front_scene.current].style = style;
+        app.stage.addChild(board_wire_front_scene.texts[board_wire_front_scene.current]);
     }
 
     function cleanDirt() {

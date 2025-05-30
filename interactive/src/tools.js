@@ -18,6 +18,8 @@ const solder_sprite = new Sprite(solder_texture);
 const wood_sprite = new Sprite(wood_texture);
 const hand_sprite = new Sprite(hand_texture);
 
+
+
 const screwdriver_sprite_glif = new Sprite(screwdriver_texture);
 const screwdriver_weird_sprite_glif = new Sprite(screwdriver_weird_texture);
 const chisel_sprite_glif = new Sprite(chisel_texture);

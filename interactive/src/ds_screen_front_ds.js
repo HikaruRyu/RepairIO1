@@ -1,5 +1,5 @@
-import { Application, Assets, SCALE_MODES, Sprite } from 'pixi.js';
-import { nds_bottom_btns, board_screenfront_scene, nds_board,top_1, getLayer, getAbsoluteLocalParent, atachedToAnything, getParents } from './hardware.js';
+import { Application, Assets, SCALE_MODES, Sprite, TextStyle } from 'pixi.js';
+import { nds_bottom_btns, board_screenfront_scene, nds_board, top_1, getLayer, getAbsoluteLocalParent, atachedToAnything, getParents } from './hardware.js';
 import { tools } from "./tools.js";
 
 (async () => {
@@ -43,8 +43,10 @@ import { tools } from "./tools.js";
 
     function scene_change() {
         console.log(board_screenfront_scene.conditions[board_screenfront_scene.current])
-        console.log(getLayer(2,hardware))
-        
+        console.log(getLayer(2, hardware))
+        if (board_screenfront_scene.current + 1 == board_screenfront_scene.hardware.length) {
+            window.location.reload();
+        }
         if (board_screenfront_scene.conditions[board_screenfront_scene.current]()) {
             board_screenfront_scene.current += 1;
             //app.stage.removeChildren()
@@ -55,6 +57,8 @@ import { tools } from "./tools.js";
             dragLayer = null;
             hardware = board_screenfront_scene.hardware[board_screenfront_scene.current];
             instanciate_hardware(hardware);
+            app.stage.addChild(board_screenfront_scene.texts[board_screenfront_scene.current - 1]).destroy();
+
         }
     }
 
@@ -63,7 +67,7 @@ import { tools } from "./tools.js";
     app.ticker.add((delta) => {
         if (board_screenfront_scene.current == board_screenfront_scene.conditions.length || !board_screenfront_scene.conditions[board_screenfront_scene.current]()) {
             button_spr.texture = btnoff_t
-        } else if(board_screenfront_scene.conditions[board_screenfront_scene.current]()) {
+        } else if (board_screenfront_scene.conditions[board_screenfront_scene.current]()) {
             button_spr.texture = btnon_t
 
         }
@@ -114,12 +118,12 @@ import { tools } from "./tools.js";
     function instanciate_tools(tools) {
         let x = 18;
         app.stage.addChild(tools.table.sprite)
-        tools.table.sprite.scale.set(1.8)
+        tools.table.sprite.scale.set(1.6)
         for (const [key, value] of Object.entries(tools)) {
             if (value.id != null) {
-                value.sprite.scale.set(0.15);
+                value.sprite.scale.set(0.14);
                 value.sprite.x = x;
-                value.sprite.y = 25;
+                value.sprite.y = 20;
                 x += 50;
                 if (value.id == 4) {
                     x += 70;
@@ -189,6 +193,24 @@ import { tools } from "./tools.js";
         });
         hardware.layers[2].sprite.x += 500;
         hardware.layers[2].sprite.y -= 190;
+        var style = new TextStyle({
+            fontFamily: 'Arial',
+            fontSize: 30,
+            fontWeight: 'bold',
+            fill: '#ffffff',
+            stroke: { color: '#000000', width: 5, join: 'round' },
+            dropShadow: {
+                color: '#000000',
+                blur: 4,
+                angle: Math.PI / 6,
+                distance: 6,
+            },
+            wordWrap: true,
+            wordWrapWidth: 300,
+        });
+        board_screenfront_scene.texts[board_screenfront_scene.current].x = 800;
+        board_screenfront_scene.texts[board_screenfront_scene.current].style = style;
+        app.stage.addChild(board_screenfront_scene.texts[board_screenfront_scene.current]);
     }
 
     function cleanDirt() {

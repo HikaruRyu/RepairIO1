@@ -113,7 +113,19 @@ INSERT INTO `problema` (`idProblema`, `titol`, `descripcio`, `URLapp`, `idConsol
 (11, 'Problemes Llum', 'La llum', 'http://localhost:5173', 7);
 
 INSERT INTO `problema` (`idProblema`, `titol`, `descripcio`, `URLapp`, `idConsola`) VALUES
-(1, 'Problemes Btns', 'Btns', 'ds_btns_ds', 1);
+(1, 'Problemes D-Pad i XYAB', 'Btns', 'ds_btns_front_ds', 1);
+
+INSERT INTO `problema` (`idProblema`, `titol`, `descripcio`, `URLapp`, `idConsola`) VALUES
+(2, 'Problemes Pantalla Normal', 'Btns', 'ds_screen_front_ds', 1);
+
+INSERT INTO `problema` (`idProblema`, `titol`, `descripcio`, `URLapp`, `idConsola`) VALUES
+(3, 'Problemes Slots', 'Btns', 'ds_slots_ds', 1);
+
+INSERT INTO `problema` (`idProblema`, `titol`, `descripcio`, `URLapp`, `idConsola`) VALUES
+(4, 'Problemes Pantalla Tactil', 'Btns', 'ds_wire_front_ds', 1);
+
+INSERT INTO `problema` (`idProblema`, `titol`, `descripcio`, `URLapp`, `idConsola`) VALUES
+(5, 'Problemes Btns', 'Btns', 'ds_btns_ds', 1);
 
 -- --------------------------------------------------------
 

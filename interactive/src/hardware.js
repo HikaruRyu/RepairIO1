@@ -1,4 +1,4 @@
-import { Application, Assets, SCALE_MODES, Sprite } from 'pixi.js';
+import { Application, Assets, SCALE_MODES, Sprite,Text, TextStyle } from 'pixi.js';
 
 
 const board_front_t = await Assets.load('/assets/DS/ds_board_front.png');
@@ -457,6 +457,11 @@ export var ds_btns_ds = {
     current: 0,
     hardware: [top_1, nds, nds_board],
     order: [1, 2, 3],
+    texts:[
+        new Text({ text: 'Netejar els botons amb el bastonet' }),
+        new Text({ text: 'Utilitzar els tornavisos per descollar els cargols, i la palanca per extreure la bateria' }),
+        new Text({ text: 'Netejar els botons amb el bastonet' })
+    ],
     conditions: [() => { return gba_card.atached[0] == false }, () => {
         return nds.layers[2].atached[0] == false &&
             nds.layers[5].atached[0] == false &&
@@ -464,7 +469,7 @@ export var ds_btns_ds = {
             nds.layers[7].atached[0] == false &&
             nds.layers[8].atached[0] == false &&
             nds.layers[9].atached[0] == false
-    }]
+    },()=>{return true}]
     //()=>{return btnl_s2.state == 0 && btnr_s2.state == 0}
 }
 
@@ -607,9 +612,14 @@ export var nds_board_slots = {
 
 export var ds_slots_ds = {
     name: "DS",
-    current: 2,
+    current: 0,
     hardware: [top_1, nds, nds_board_slots],
     order: [1, 2, 3],
+    texts:[
+        new Text({ text: 'Utilitza la ma per extreure el cartux del slot de la GBA' }),
+        new Text({ text: 'Utilitzar els tornavisos per descollar els cargols, i la palanca per extreure la bateria' }),
+        new Text({ text: 'Utilitzar el multimetre i soldador al slot de la ds, i el soldador al de la GBA' })
+    ],
     conditions: [() => { return gba_card.atached[0] == false }, () => {
         return nds.layers[2].atached[0] == false &&
             nds.layers[5].atached[0] == false &&
@@ -681,6 +691,11 @@ export var ds_btns_front_ds = {
     current: 0,
     hardware: [nds_bottom_btns],
     order: [1],
+    texts:[
+        new Text({ text: 'Utilitza la ma per extreure el cartux del slot de la GBA' }),
+        new Text({ text: 'Utilitzar els tornavisos per descollar els cargols, i la palanca per extreure la bateria' }),
+        new Text({ text: 'Netejar els botons amb el bastonet' })
+    ],
     conditions: [() => { return btnfront1.state == 0 && btnfront2.state == 0 }]
     //()=>{return btnl_s2.state == 0 && btnr_s2.state == 0}
 }
@@ -745,6 +760,11 @@ export var board_wire_front_scene = {
     current: 0,
     hardware: [nds_cable_change],
     order: [1],
+    texts:[
+        new Text({ text: 'Utilitza la ma per treure el cable trencat i posar el nou' }),
+        new Text({ text: 'Utilitzar els tornavisos per descollar els cargols, i la palanca per extreure la bateria' }),
+        new Text({ text: 'Netejar els botons amb el bastonet' })
+    ],
     conditions: [() => { return wire_regular.atached[0] == true && wire_broken.atached[0] != true }]
     //()=>{return btnl_s2.state == 0 && btnr_s2.state == 0}
 }
@@ -810,6 +830,11 @@ export var board_screenfront_scene = {
     current: 0,
     hardware: [nds_screen_change],
     order: [1],
+    texts:[
+        new Text({ text: 'Utilitza la ma per extreure la pantalla dañada i posar la nova' }),
+        new Text({ text: 'Utilitzar els tornavisos per descollar els cargols, i la palanca per extreure la bateria' }),
+        new Text({ text: 'Netejar els botons amb el bastonet' })
+    ],
     conditions: [() => { return screen_regular.atached[0] == true && screen_broken.atached[0] != true }]
     //()=>{return btnl_s2.state == 0 && btnr_s2.state == 0}
 }
