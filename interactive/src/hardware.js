@@ -458,7 +458,7 @@ export var ds_btns_ds = {
     hardware: [top_1, nds, nds_board],
     order: [1, 2, 3],
     texts:[
-        new Text({ text: 'Netejar els botons amb el bastonet' }),
+        new Text({ text: 'Treu el joc de la GBA ' }),
         new Text({ text: 'Utilitzar els tornavisos per descollar els cargols, i la palanca per extreure la bateria' }),
         new Text({ text: 'Netejar els botons amb el bastonet' })
     ],
@@ -692,9 +692,9 @@ export var ds_btns_front_ds = {
     hardware: [nds_bottom_btns],
     order: [1],
     texts:[
-        new Text({ text: 'Utilitza la ma per extreure el cartux del slot de la GBA' }),
+        new Text({ text: 'Netejaa els botons amb el bastonet' }),
         new Text({ text: 'Utilitzar els tornavisos per descollar els cargols, i la palanca per extreure la bateria' }),
-        new Text({ text: 'Netejar els botons amb el bastonet' })
+        new Text({ text: 'Netejaa els botons amb el bastonet' })
     ],
     conditions: [() => { return btnfront1.state == 0 && btnfront2.state == 0 }]
     //()=>{return btnl_s2.state == 0 && btnr_s2.state == 0}
