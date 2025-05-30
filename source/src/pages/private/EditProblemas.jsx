@@ -85,7 +85,7 @@ const ManageProblemas = () => {
   };
 
   return (
-    <div className="container ml-16 mt-5">
+    <div className="container  mt-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2 className="text-3xl font-bold text-center mb-8 border-b-4 border-black pb-3 pt-2 bg-orange-400 shadow-[3px_3px_0_#000]">
           Gestió de Problemes

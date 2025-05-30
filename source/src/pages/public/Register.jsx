@@ -77,77 +77,90 @@ const handleSubmit = async (e) => {
 
 
 
-  return (
-    <div className="min-h-screen bg-orange-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-96">
-        <h2 className="text-3xl font-bold text-orange-700 text-center mb-8">REGISTRA'T</h2>
-        
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-orange-700 font-bold mb-2">Nom d'usuari</label>
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              className="w-full p-2 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500"
-              required
-            />
-          </div>
+  
+return (
+  <div className="min-h-screen bg-orange-50 flex items-center justify-center">
+    <div className="bg-orange-300 p-8 rounded-4xl shadow-lg w-[600px] h-[650px]">
+      <h2 className="text-3xl font-bold text-orange-700 text-center mt-8 mb-8">
+        REGISTRA'T
+      </h2>
 
-          <div>
-            <label className="block text-orange-700 font-bold mb-2">Correu electrònic</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full p-2 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500"
-              required
-            />
-          </div>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="flex flex-col items-center">
+          <label className="text-orange-700 text-lg font-bold mb-2">
+            Nom d'usuari
+          </label>
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            className="w-96 p-2 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500"
+            required
+          />
+        </div>
 
-          <div>
-            <label className="block text-orange-700 font-bold mb-2">Contrasenya</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full p-2 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500"
-              required
-            />
-          </div>
+        <div className="flex flex-col items-center">
+          <label className="text-orange-700 text-lg font-bold mb-2">
+            Correu electrònic
+          </label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-96 p-2 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500"
+            required
+          />
+        </div>
 
-          <div>
-            <label className="block text-orange-700 font-bold mb-2">Confirma la contrasenya</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="w-full p-2 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500"
-              required
-            />
-          </div>
+        <div className="flex flex-col items-center">
+          <label className="text-orange-700 text-lg font-bold mb-2">
+            Contrasenya
+          </label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            className="w-96 p-2 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500"
+            required
+          />
+        </div>
+
+        <div className="flex flex-col items-center">
+          <label className="text-orange-700 text-lg font-bold mb-2">
+            Confirma la contrasenya
+          </label>
+          <input
+            type="password"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            className="w-96 p-2 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500"
+            required
+          />
+        </div>
+        <div className="flex flex-col items-center justify-center">
 
           <button
             type="submit"
-            className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition-colors"
+            className="w-36 bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition-colors"
           >
             REGISTRAR-SE
           </button>
-        </form>
+        </div>
+      </form>
 
-        <p className="mt-4 text-center text-gray-600">
-          Ja tens compte?{' '}
-          <Link to="/login" className="text-orange-600 hover:text-orange-700">
-            Inicia sessió aquí
-          </Link>
-        </p>
-      </div>
+      <p className="mt-4 text-center text-gray-600">
+        Ja tens compte?{' '}
+        <Link to="/login" className="text-orange-600 hover:text-orange-700">
+          Inicia sessió aquí
+        </Link>
+      </p>
     </div>
-  );
+  </div>
+);
 }
 
 export default Register;
