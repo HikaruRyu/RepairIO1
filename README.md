@@ -4,7 +4,7 @@
 
 ## Deployment
 
-To deploy this project localy clone this repository, rename ".env.example" to ".env." and run
+To deploy this project localy clone this repository, open a terminal inside the new folder, rename ".env.example" to ".env." and run
 
 **Needs a working docker enviorment!**
 
